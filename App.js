@@ -5,6 +5,7 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
+  RefreshControl
 } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import getCryptoData from "./api";
@@ -13,16 +14,23 @@ import { styles } from "./Styles/styles";
 const App = () => {
   const [cryptoData, setCryptoData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchData = async () => {
+    const data = await getCryptoData();
+    setCryptoData(data);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getCryptoData();
-      setCryptoData(data);
-      setLoading(false);
-    };
-
     fetchData();
   }, []);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchData();
+    setRefreshing(false);
+  };
 
   const renderItem = ({ item }) => (
     <View style={styles.cryptoContainer}>
@@ -57,6 +65,9 @@ const App = () => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           contentContainerStyle={styles.scrollViewContent}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         />
       </View>
     </SafeAreaProvider>
