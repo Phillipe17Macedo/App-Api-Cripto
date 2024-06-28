@@ -2,16 +2,17 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   scrollViewContent: {
-    flexGrow: 1,
-    backgroundColor: "#3D3D3D",
-    alignItems: "center",
-    paddingTop: 40,
+    paddingBottom: 20,
   },
   container: {
     flex: 1,
-    alignItems: "center",
+    backgroundColor: "#3D3D3D",
+  },
+  loadingContainer: {
+    flex: 1,
     justifyContent: "center",
-    padding: 20,
+    alignItems: "center",
+    backgroundColor: "#3D3D3D",
   },
   heading: {
     fontSize: 24,
@@ -20,12 +21,12 @@ export const styles = StyleSheet.create({
     color: "#84B026",
   },
   cryptoContainer: {
+    margin: 10,
+    backgroundColor: "#217373",
+  },
+  cryptoContent: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 15,
-    backgroundColor: "#217373",
-    padding: 10,
-    borderRadius: 10,
   },
   cryptoLogo: {
     width: 50,
