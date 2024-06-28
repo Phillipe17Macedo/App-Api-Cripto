@@ -35,7 +35,7 @@ const CryptoDetail = ({ crypto }) => {
       <Text>{crypto.name}</Text>
       <LineChart
         data={data}
-        width={screenWidth}
+        width={screenWidth - 40}
         height={220}
         chartConfig={chartConfig}
       />

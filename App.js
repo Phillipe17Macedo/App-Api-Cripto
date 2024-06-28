@@ -5,16 +5,23 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
-  RefreshControl
+  RefreshControl,
+  Modal,
+  TouchableOpacity,
+  StyleSheet,
+  Button,
 } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import getCryptoData from "./api";
+import CryptoDetail from "./CryptoDetail"; // Certifique-se de que o caminho está correto
 import { styles } from "./Styles/styles";
 
 const App = () => {
   const [cryptoData, setCryptoData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCrypto, setSelectedCrypto] = useState(null);
 
   const fetchData = async () => {
     const data = await getCryptoData();
@@ -33,7 +40,13 @@ const App = () => {
   };
 
   const renderItem = ({ item }) => (
-    <View style={styles.cryptoContainer}>
+    <TouchableOpacity
+      style={styles.cryptoContainer}
+      onPress={() => {
+        setSelectedCrypto(item);
+        setModalVisible(true);
+      }}
+    >
       <Image
         source={{
           uri: `https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`,
@@ -45,7 +58,7 @@ const App = () => {
         <Text style={styles.cryptoPrice}>Preço: ${item.price}</Text>
         <Text style={styles.cryptoChange}>Variação (24h): {item.change}%</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   if (loading) {
@@ -69,9 +82,40 @@ const App = () => {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         />
+        {selectedCrypto && (
+          <Modal
+            visible={modalVisible}
+            transparent={true}
+            animationType="slide"
+            onRequestClose={() => setModalVisible(false)}
+          >
+            <View style={modalStyles.modalOverlay}>
+              <View style={modalStyles.modalContainer}>
+                <CryptoDetail crypto={selectedCrypto} />
+                <Button title="Fechar" onPress={() => setModalVisible(false)} />
+              </View>
+            </View>
+          </Modal>
+        )}
       </View>
     </SafeAreaProvider>
   );
 };
+
+const modalStyles = StyleSheet.create({
+  modalOverlay: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalContainer: {
+    width: "90%",
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+});
 
 export default App;
