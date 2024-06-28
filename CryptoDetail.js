@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
-import { Dimensions } from 'react-native';
-import { getHistoricalData } from './api';
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  ScrollView,
+} from "react-native";
+import { LineChart } from "react-native-chart-kit";
+import { Dimensions } from "react-native";
+import { getHistoricalData } from "./api";
 
 const CryptoDetail = ({ crypto }) => {
   const [historicalData, setHistoricalData] = useState(null);
@@ -28,18 +34,20 @@ const CryptoDetail = ({ crypto }) => {
   }
 
   const data = {
-    labels: historicalData.map(d => new Date(d.timestamp).toLocaleDateString()),
+    labels: historicalData.map((d) =>
+      new Date(d.timestamp).toLocaleDateString()
+    ),
     datasets: [
       {
-        data: historicalData.map(d => d.price),
+        data: historicalData.map((d) => d.price),
       },
     ],
   };
 
   const chartConfig = {
-    backgroundColor: "#e26a00",
-    backgroundGradientFrom: "#fb8c00",
-    backgroundGradientTo: "#ffa726",
+    backgroundColor: "#1B1F26",
+    backgroundGradientFrom: "#282A36",
+    backgroundGradientTo: "#9163F2",
     decimalPlaces: 2,
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -49,32 +57,36 @@ const CryptoDetail = ({ crypto }) => {
     propsForDots: {
       r: "6",
       strokeWidth: "2",
-      stroke: "#ffa726",
+      stroke: "#A0CD60",
     },
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{crypto.name}</Text>
-      <LineChart
-        data={data}
-        width={screenWidth - 40}
-        height={220}
-        chartConfig={chartConfig}
-        bezier
-        style={styles.chart}
-      />
+      <ScrollView horizontal={true}>
+        <LineChart
+          data={data}
+          width={screenWidth}
+          height={220}
+          chartConfig={chartConfig}
+          bezier
+          style={styles.chart}
+        />
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
+    alignItems: "center",
+    
   },
   title: {
     fontSize: 20,
     marginBottom: 10,
+    fontWeight: 'bold'
   },
   chart: {
     marginVertical: 8,
