@@ -12,8 +12,8 @@ import {
   Button,
 } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import getCryptoData from "./api";
-import CryptoDetail from "./CryptoDetail"; // Certifique-se de que o caminho está correto
+import { getCryptoData } from "./api";
+import CryptoDetail from "./CryptoDetail";
 import { styles } from "./Styles/styles";
 
 const App = () => {
