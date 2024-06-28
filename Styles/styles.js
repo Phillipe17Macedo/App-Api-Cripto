@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#3D3D3D",
+    paddingTop: 40,
   },
   loadingContainer: {
     flex: 1,
@@ -19,14 +20,16 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 20,
     color: "#84B026",
+    textAlign: "center",
   },
   cryptoContainer: {
-    margin: 10,
-    backgroundColor: "#217373",
-  },
-  cryptoContent: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 15,
+    backgroundColor: "#217373",
+    padding: 10,
+    borderRadius: 10,
+    marginHorizontal: 20,
   },
   cryptoLogo: {
     width: 50,

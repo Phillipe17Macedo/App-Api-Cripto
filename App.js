@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, Image, FlatList, ActivityIndicator } from 'react-native';
-import { Appbar, Card } from 'react-native-paper';
-import getCryptoData from './api';
-import { styles } from './Styles/styles';
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import getCryptoData from "./api";
+import { styles } from "./Styles/styles";
 
 const App = () => {
   const [cryptoData, setCryptoData] = useState(null);
@@ -19,19 +25,19 @@ const App = () => {
   }, []);
 
   const renderItem = ({ item }) => (
-    <Card style={styles.cryptoContainer}>
-      <Card.Content style={styles.cryptoContent}>
-        <Image
-          source={{ uri: `https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png` }}
-          style={styles.cryptoLogo}
-        />
-        <View style={styles.cryptoInfo}>
-          <Text style={styles.cryptoName}>{item.name}</Text>
-          <Text style={styles.cryptoPrice}>Preço: ${item.price}</Text>
-          <Text style={styles.cryptoChange}>Variação (24h): {item.change}%</Text>
-        </View>
-      </Card.Content>
-    </Card>
+    <View style={styles.cryptoContainer}>
+      <Image
+        source={{
+          uri: `https://s2.coinmarketcap.com/static/img/coins/64x64/${item.id}.png`,
+        }}
+        style={styles.cryptoLogo}
+      />
+      <View style={styles.cryptoInfo}>
+        <Text style={styles.cryptoName}>{item.name}</Text>
+        <Text style={styles.cryptoPrice}>Preço: ${item.price}</Text>
+        <Text style={styles.cryptoChange}>Variação (24h): {item.change}%</Text>
+      </View>
+    </View>
   );
 
   if (loading) {
@@ -43,17 +49,17 @@ const App = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Appbar.Header>
-        <Appbar.Content title="Crypto Tracker" />
-      </Appbar.Header>
-      <FlatList
-        data={cryptoData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-        contentContainerStyle={styles.scrollViewContent}
-      />
-    </View>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <Text style={styles.heading}>Crypto Tracker</Text>
+        <FlatList
+          data={cryptoData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+          contentContainerStyle={styles.scrollViewContent}
+        />
+      </View>
+    </SafeAreaProvider>
   );
 };
 
