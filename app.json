@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Search-Cripto",
-    "slug": "Search-Cripto",
+    "slug": "App-Api-Cripto",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon-app-api-cripto.png",
