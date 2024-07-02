@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "App-Api-Cripto",
-    "slug": "App-Api-Cripto",
+    "name": "Search-Cripto",
+    "slug": "Search-Cripto",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon-app-api-cripto.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon-app-api-cripto.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.phillipe17macedo.AppApiCripto"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ccb0a63c-357f-4343-ab2c-aeaafddcf5db"
+      }
     }
   }
 }
