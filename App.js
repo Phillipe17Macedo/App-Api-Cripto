@@ -16,6 +16,9 @@ import { getCryptoData } from "./api";
 import CryptoDetail from "./CryptoDetail";
 import { styles } from "./Styles/styles";
 
+import { LogLevel, OneSignal } from "react-native-onesignal";
+import Constants from "expo-constants";
+
 const App = () => {
   const [cryptoData, setCryptoData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,6 +34,21 @@ const App = () => {
 
   useEffect(() => {
     fetchData();
+
+    // Remove this method to stop OneSignal Debugging
+    OneSignal.Debug.setLogLevel(LogLevel.Verbose);
+
+    // OneSignal Initialization
+    OneSignal.initialize("45d50449-03b9-463e-a6a7-e6c1258cfd7d");
+
+    // requestPermission will show the native iOS or Android notification permission prompt.
+    // We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+    OneSignal.Notifications.requestPermission(true);
+
+    // Method for listening for notification clicks
+    OneSignal.Notifications.addEventListener("click", (event) => {
+      console.log("OneSignal: notification clicked:", event);
+    });
   }, []);
 
   const onRefresh = async () => {

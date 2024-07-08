@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "142577917577",
+    "firebase_url": "https://aserpa-app-default-rtdb.firebaseio.com",
+    "project_id": "aserpa-app",
+    "storage_bucket": "aserpa-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142577917577:android:7fc3de994abd3270ceb058",
+        "android_client_info": {
+          "package_name": "com.phillipe17macedo.healthapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrZaFGk35U0We1Uv7X61sbR0tYBU6PlNc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

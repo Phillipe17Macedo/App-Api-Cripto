@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.phillipe17macedo.AppApiCripto"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,7 +31,16 @@
     "extra": {
       "eas": {
         "projectId": "ccb0a63c-357f-4343-ab2c-aeaafddcf5db"
-      }
-    }
+      },
+      "oneSignalAppId": "45d50449-03b9-463e-a6a7-e6c1258cfd7d"
+    },
+    "plugins": [
+      [
+        "onesignal-expo-plugin",
+        {
+          "mode": "development"
+        }
+      ]
+    ]
   }
 }
